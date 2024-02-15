@@ -8,8 +8,7 @@ class DualMotorController:
 
     def set_motor_speed(self, motor, speed):
         # Ensure speed is within bounds and set PWM duty cycle
-        max_pwm = calculate_max_pwm()
-        duty_cycle = max(0, min((speed / 100) * 65535, max_pwm))
+        duty_cycle = min(max(0, speed / 100 * 65535), 65535)
         motor.duty_cycle = int(duty_cycle)
 
     def set_speeds(self, speed_a, speed_b):
