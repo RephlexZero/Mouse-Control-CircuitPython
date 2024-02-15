@@ -24,7 +24,7 @@ def read_input(left_sensor_pin, right_sensor_pin):
 
 def get_voltage(pin):
     """Convert the analog input to voltage."""
-    return pin.value * 3.3 / (2 ** 12 - 1)
+    return pin.value * 3.3 / (2 ** 16 - 1)
 
 class NonBlockingTimer:
     def __init__(self):
