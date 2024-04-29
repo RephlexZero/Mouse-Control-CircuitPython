@@ -1,4 +1,4 @@
-import time
+import math
 import analogio
 import board
 
@@ -20,20 +20,9 @@ def read_input(left_sensor_pin, right_sensor_pin):
     """Read the difference between the sensor voltages."""
     left_sensor_voltage = get_voltage(left_sensor_pin)
     right_sensor_voltage = get_voltage(right_sensor_pin)
+    print("L: {:.4f} R: {:.4f}".format(left_sensor_voltage, right_sensor_voltage))
     return left_sensor_voltage - right_sensor_voltage
 
 def get_voltage(pin):
     """Convert the analog input to voltage."""
     return pin.value * 3.3 / (2 ** 16 - 1)
-
-class NonBlockingTimer:
-    def __init__(self):
-        self.start_time = time.monotonic()
-        self.delay = 0
-
-    def start(self, delay):
-        self.start_time = time.monotonic()
-        self.delay = delay
-
-    def is_finished(self):
-        return (time.monotonic() - self.start_time) >= self.delay
